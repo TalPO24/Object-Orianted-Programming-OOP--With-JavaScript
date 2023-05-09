@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 //* Constructor Function and The New Operator
 // The Function() constructor creates Function objects. Calling the constructor directly can create functions dynamically
 
@@ -81,36 +81,70 @@ console.log(arr.unique());
 
 const h1 = document.querySelector('h1');
 console.dir(x => x + 1);
+*/
 
-
-
+/*
 //* Challenge #1
 // 1.
-const Car = function(curSpeed, make) {
-    this.curSpeed = curSpeed,
+const Car = function(speed, make) {
+    this.speed = speed;
         this.make = make
 }
-
-const bmw = new Car(120, 'BMW')
-console.log(bmw)
-
-const mercedes = new Car(95, 'Mercedes')
-console.log(mercedes)
-
 
 // 2. 
 Car.prototype.calcSpeed = function() {
     this.speed += 10;
-    console.log(`${this.make} is going at ${this.curSpeed} km/h`)
+    console.log(`${this.make} is going at ${this.speed} km/h`)
 }
-bmw.calcSpeed()
-mercedes.calcSpeed()
 
 // 3.
-
 Car.prototype.calcBrake = function() {
-    this.curSpeed -= 5
-    console.log(`${this.make} is going at ${this.curSpeed} km/h`)
+    this.speed -= 5
+    console.log(`${this.make} is going at ${this.speed} km/h`)
 }
+
+
+const bmw = new Car(120, 'BMW')
+const mercedes = new Car(95, 'Mercedes')
+
+bmw.calcSpeed()
+bmw.calcSpeed()
 bmw.calcBrake()
+mercedes.calcSpeed()
+mercedes.calcSpeed()
 mercedes.calcBrake()
+
+*/
+
+//* ES6 Classes
+
+// class expression
+// const PersonCL = class {}
+
+// class declaration
+class PersonCL {
+    constructor(firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear
+    }
+    clacAge() {
+        console.log(2037 - this.birthYear)
+    }
+    greet() {
+        console.log(`Hey ${this.firstName}`)
+
+    }
+}
+
+const jessica = new PersonCL('Jessica', 1996)
+console.log(jessica)
+jessica.clacAge()
+
+// PersonCL.prototype.greet = function() {
+//     console.log(`Hey ${this.firstName}`)
+// }
+jessica.greet()
+
+// 1. Classes are NOT hoisted
+// 2. Classes are first-class citizens
+// 3. Classes are executed in strivt mode
