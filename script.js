@@ -81,3 +81,36 @@ console.log(arr.unique());
 
 const h1 = document.querySelector('h1');
 console.dir(x => x + 1);
+
+
+
+//* Challenge #1
+// 1.
+const Car = function(curSpeed, make) {
+    this.curSpeed = curSpeed,
+        this.make = make
+}
+
+const bmw = new Car(120, 'BMW')
+console.log(bmw)
+
+const mercedes = new Car(95, 'Mercedes')
+console.log(mercedes)
+
+
+// 2. 
+Car.prototype.calcSpeed = function() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.curSpeed} km/h`)
+}
+bmw.calcSpeed()
+mercedes.calcSpeed()
+
+// 3.
+
+Car.prototype.calcBrake = function() {
+    this.curSpeed -= 5
+    console.log(`${this.make} is going at ${this.curSpeed} km/h`)
+}
+bmw.calcBrake()
+mercedes.calcBrake()
