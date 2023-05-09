@@ -1,5 +1,4 @@
 'use strict';
-/*
 //* Constructor Function and The New Operator
 // The Function() constructor creates Function objects. Calling the constructor directly can create functions dynamically
 
@@ -30,7 +29,13 @@ console.log(matilda, Jack)
 
 console.log(Tal instanceof Person)
 
+Person.hey = function() {
+    console.log('Hey there 🖐️')
+    console.log(this)
+}
+Person.hey()
 
+/*
 //* Prototypes 
 // The prototype data property of a Function instance is used when the function is used as a constructor with the new operator. It will become the new object's prototype.
 
@@ -124,9 +129,11 @@ mercedes.calcBrake()
 // class declaration
 class PersonCL {
     constructor(fullName, birthYear) {
-        this.fullName = fullName;
-        this.birthYear = birthYear
-    }
+            this.fullName = fullName;
+            this.birthYear = birthYear
+        }
+        // Instance methods
+        // Methods will be added to .prototype property
     clacAge() {
         console.log(2037 - this.birthYear)
     }
@@ -143,6 +150,12 @@ class PersonCL {
     }
     get fullName() {
         return this._fullName
+    }
+
+    // Static method The static keyword defines a static method or field for a class.  Static properties cannot be directly accessed on instances of the class. Instead, they're accessed on the class itself.
+    static hey() {
+        console.log('Hey there 🖐️')
+        console.log(this)
     }
 }
 
@@ -163,6 +176,9 @@ jessica.greet()
 
 const walter = new PersonCL('Walter white', 1965)
 
+PersonCL.hey()
+
+/*
 //* Setters and Getters
 const account = {
     owner: 'jonas',
@@ -182,3 +198,4 @@ console.log(account.latest)
 
 account.latest = 50
 console.log(account.movements)
+*/
