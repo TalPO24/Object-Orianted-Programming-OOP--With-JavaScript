@@ -155,7 +155,7 @@ class PersonCL {
     // Static method The static keyword defines a static method or field for a class.  Static properties cannot be directly accessed on instances of the class. Instead, they're accessed on the class itself.
     static hey() {
         console.log('Hey there 🖐️')
-        console.log(this)
+            // console.log(this)
     }
 }
 
@@ -199,3 +199,30 @@ console.log(account.latest)
 account.latest = 50
 console.log(account.movements)
 */
+
+
+//* Object.create
+// The Object.create() static method creates a new object, using an existing object as the prototype of the newly created object.
+const personProto = {
+    clacAge() {
+        console.log(2037 - this.birthYear)
+    },
+
+    init(firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear
+    }
+}
+
+const steven = Object.create(personProto)
+
+console.log(steven)
+steven.name = 'Steven'
+steven.birthYear = 2002
+steven.clacAge()
+
+console.log(steven.__proto__ === personProto)
+
+const sarah = Object.create(personProto)
+sarah.init('Sarah', 1979)
+sarah.calcAge()
