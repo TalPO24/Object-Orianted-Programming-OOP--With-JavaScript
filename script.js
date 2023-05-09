@@ -1,4 +1,6 @@
 'use strict';
+
+/*
 //* Constructor Function and The New Operator
 // The Function() constructor creates Function objects. Calling the constructor directly can create functions dynamically
 
@@ -34,6 +36,7 @@ Person.hey = function() {
     console.log(this)
 }
 Person.hey()
+*/
 
 /*
 //* Prototypes 
@@ -229,7 +232,7 @@ sarah.calcAge()
 
 
 
-
+/*
 //* Challenge #2
 class Car {
     constructor(make, speed) {
@@ -262,3 +265,41 @@ ford.calcSpeed()
 ford.calcBrake()
 ford.speedUS = 50;
 console.log(ford)
+*/
+
+//* Inheritance Between "Classes": Constructor functions 
+const Person = function(firstName, birthYear) {
+    this.firstName = firstName
+    this.birthYear = birthYear
+}
+
+Person.prototype.calcAge = function() {
+    console.log(2037 - this.birthYear)
+}
+
+const Student = function(firstName, birthYear, course) {
+    Person.call(this, firstName, birthYear) // The call() method calls the function with a given this value and arguments provided individually.
+    this.course = course;
+}
+
+// Linking prototypes
+Student.prototype = Object.create(Person.prototype)
+
+
+Student.prototype.interduce = function() {
+    console.log(`My name is ${this.firstName} and i study ${this.course}`)
+}
+
+const mike = new Student('Mike', 2020, 'Computer Sciencs')
+mike.interduce()
+mike.calcAge()
+
+console.log(mike.__proto__);
+console.log(mike.__proto__.__proto__);
+
+console.log(mike instanceof Student);
+console.log(mike instanceof Person);
+console.log(mike instanceof Object);
+
+Student.prototype.constructor = Student;
+console.dir(Student.prototype.constructor);
