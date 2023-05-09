@@ -171,7 +171,7 @@ jessica.greet()
 
 // 1. Classes are NOT hoisted
 // 2. Classes are first-class citizens
-// 3. Classes are executed in strivt mode
+// 3. Classes are executed in strict mode
 
 
 const walter = new PersonCL('Walter white', 1965)
@@ -204,7 +204,7 @@ console.log(account.movements)
 //* Object.create
 // The Object.create() static method creates a new object, using an existing object as the prototype of the newly created object.
 const personProto = {
-    clacAge() {
+    calcAge() {
         console.log(2037 - this.birthYear)
     },
 
@@ -219,10 +219,46 @@ const steven = Object.create(personProto)
 console.log(steven)
 steven.name = 'Steven'
 steven.birthYear = 2002
-steven.clacAge()
+steven.calcAge()
 
 console.log(steven.__proto__ === personProto)
 
 const sarah = Object.create(personProto)
 sarah.init('Sarah', 1979)
 sarah.calcAge()
+
+
+
+
+//* Challenge #2
+class Car {
+    constructor(make, speed) {
+        this.speed = speed;
+        this.make = make
+    }
+    calcSpeed = function() {
+        this.speed += 10;
+        console.log(`${this.make} is going at ${this.speed} km/h`)
+    }
+
+    calcBrake = function() {
+        this.speed -= 5
+        console.log(`${this.make} is going at ${this.speed} km/h`)
+    }
+    get speedUS() {
+        return this.speed / 1.6
+    }
+
+    set speedUS(speed) {
+        return this.speed = speed * 1.6
+    }
+
+}
+
+const ford = new Car('Ford', 120)
+console.log(ford.speedUS)
+ford.calcSpeed()
+ford.calcSpeed()
+ford.calcBrake()
+ford.speedUS = 50;
+console.log(ford)
