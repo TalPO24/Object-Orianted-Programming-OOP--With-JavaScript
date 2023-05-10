@@ -2,16 +2,16 @@
 
 /*
 //* Constructor Function and The New Operator
-// The Function() constructor creates Function objects. Calling the constructor directly can create functions dynamically
+//* The Function() constructor creates Function objects. Calling the constructor directly can create functions dynamically
 
-// constructor creates functions which execute in the global scope only.
+//* constructor creates functions which execute in the global scope only.
 
 const Person = function(firstName, birthYear) {
-    //Instance properties
+    //* Instance properties
     this.firstName = firstName
     this.birthYear = birthYear
 
-    // Never do this
+    //* Never do this
     // this.calcAge = function() {
     //     console.log(2037 - this.birthYear)
     // }
@@ -20,10 +20,10 @@ const Person = function(firstName, birthYear) {
 const Tal = new Person('Tal', '1996')
 console.log(Tal)
 
-// 1. New {} is created
-// 2. function is calld, this = {}
-// 3. linked to prototype
-// 4. function automatically returns {}
+//* 1. New {} is created
+//* 2. function is calld, this = {}
+//* 3. linked to prototype
+//* 4. function automatically returns {}
 
 const matilda = new Person('Matilda', 2017)
 const Jack = new Person('Jack', 1975)
@@ -40,9 +40,9 @@ Person.hey()
 
 /*
 //* Prototypes 
-// The prototype data property of a Function instance is used when the function is used as a constructor with the new operator. It will become the new object's prototype.
+//* The prototype data property of a Function instance is used when the function is used as a constructor with the new operator. It will become the new object's prototype.
 
-// Operator - Reserved syntax consisting of punctuation or alphanumeric characters that carries out built-in functionality. For example, in JavaScript the addition operator ("+") adds numbers together and concatenates strings, whereas the "not" operator ("!") negates an expression — for example making a true statement return false.
+//* Operator - Reserved syntax consisting of punctuation or alphanumeric characters that carries out built-in functionality. For example, in JavaScript the addition operator ("+") adds numbers together and concatenates strings, whereas the "not" operator ("!") negates an expression — for example making a true statement return false.
 
 console.log(Person.prototype)
 
@@ -56,20 +56,20 @@ matilda.calcAge()
 console.log(Tal.__proto__) // (Deprecated)
 console.log(Tal.__proto__ === Person.prototype)
 
-console.log(Person.prototype.isPrototypeOf(Tal)) // The isPrototypeOf() method checks if an object exists in another object's prototype chain.
+console.log(Person.prototype.isPrototypeOf(Tal)) //* The isPrototypeOf() method checks if an object exists in another object's prototype chain.
 console.log(Person.prototype.isPrototypeOf(matilda))
 console.log(Person.prototype.isPrototypeOf(Person))
 
 Person.prototype.species = 'Homo Sapiens'
 console.log(matilda.species, Tal.species)
 
-console.log(Tal.hasOwnProperty('firstName')) // The hasOwnProperty() method returns a boolean indicating whether the object has the specified property as its own property (as opposed to inheriting it).
+console.log(Tal.hasOwnProperty('firstName')) //* The hasOwnProperty() method returns a boolean indicating whether the object has the specified property as its own property (as opposed to inheriting it).
 console.log(Tal.hasOwnProperty('birthYear'))
 console.log(Tal.hasOwnProperty('species'))
 
 //* Prototypal Inheritance on Built-In Objects
 console.log(Tal.__proto__);
-// Object.prototype (top of prototype chain)
+//* Object.prototype (top of prototype chain)
 console.log(Tal.__proto__.__proto__);
 console.log(Tal.__proto__.__proto__.__proto__);
 
@@ -125,18 +125,18 @@ mercedes.calcBrake()
 
 /*
 //* ES6 Classes
-// class expression
+//* class expression
 // const PersonCL = class {}
 
 
-// class declaration
+//* class declaration
 class PersonCL {
     constructor(fullName, birthYear) {
             this.fullName = fullName;
             this.birthYear = birthYear
         }
-        // Instance methods
-        // Methods will be added to .prototype property
+        //* Instance methods
+        //* Methods will be added to .prototype property
     clacAge() {
         console.log(2037 - this.birthYear)
     }
@@ -146,7 +146,7 @@ class PersonCL {
     get age() {
             return 2037 - this.birthYear
         }
-        // Set a property that already exists 
+        //* Set a property that already exists 
     set fullName(name) {
         if (name.includes(" ")) this._fullName = name
         else alert(`${name} is not a full name`)
@@ -155,7 +155,7 @@ class PersonCL {
         return this._fullName
     }
 
-    // Static method The static keyword defines a static method or field for a class.  Static properties cannot be directly accessed on instances of the class. Instead, they're accessed on the class itself.
+    //* Static method The static keyword defines a static method or field for a class.  Static properties cannot be directly accessed on instances of the class. Instead, they're accessed on the class itself.
     static hey() {
         console.log('Hey there 🖐️')
             // console.log(this)
@@ -172,9 +172,9 @@ console.log(jessica.age)
 // }
 jessica.greet()
 
-// 1. Classes are NOT hoisted
-// 2. Classes are first-class citizens
-// 3. Classes are executed in strict mode
+//* 1. Classes are NOT hoisted
+//* 2. Classes are first-class citizens
+//* 3. Classes are executed in strict mode
 
 
 const walter = new PersonCL('Walter white', 1965)
@@ -207,7 +207,7 @@ console.log(account.movements)
 
 /*
 //* Object.create
-// The Object.create() static method creates a new object, using an existing object as the prototype of the newly created object.
+//* The Object.create() static method creates a new object, using an existing object as the prototype of the newly created object.
 const personProto = {
     calcAge() {
         console.log(2037 - this.birthYear)
@@ -281,11 +281,11 @@ Person.prototype.calcAge = function() {
 }
 
 const Student = function(firstName, birthYear, course) {
-    Person.call(this, firstName, birthYear) // The call() method calls the function with a given this value and arguments provided individually.
+    Person.call(this, firstName, birthYear) //* The call() method calls the function with a given this value and arguments provided individually.
     this.course = course;
 }
 
-// Linking prototypes
+//* Linking prototypes
 Student.prototype = Object.create(Person.prototype)
 
 
@@ -330,7 +330,7 @@ const EV = function(speed, make, charge) {
     this.charge = charge;
 }
 
-// Link the prototype
+//* Link the prototype
 EV.prototype = Object.create(Car.prototype)
 EV.prototype.chargeBattery = function(chargeTo) {
     this.charge = chargeTo;
@@ -351,8 +351,9 @@ tesla.calcBrake()
 tesla.calcSpeed()
 */
 
-//* Inheritance Between "Classes": ES6 Classes
 
+/*
+//* Inheritance Between "Classes": ES6 Classes
 class PersonCL {
     constructor(fullName, birthYear) {
         this.fullName = fullName;
@@ -367,7 +368,7 @@ class PersonCL {
     get age() {
             return 2037 - this.birthYear
         }
-        // Set a property that already exists 
+        //* Set a property that already exists 
     set fullName(name) {
         if (name.includes(" ")) this._fullName = name
         else alert(`${name} is not a full name`)
@@ -375,17 +376,17 @@ class PersonCL {
     get fullName() {
             return this._fullName
         }
-        // Static method
+        //* Static method
     static hey() {
         console.log('Hey there 🖐️')
             // console.log(this)
     }
 }
 
-class StudentCL extends PersonCL {
+class StudentCL extends PersonCL { //* The extends keyword is used in class declarations or class expressions to create a class that is a child of another class.
     constructor(fullName, birthYear, course) {
-        // Always needs to happen first!
-        super(fullName, birthYear) // The super keyword is used to access properties on an object literal or class's [[Prototype]], or invoke a superclass's constructor.
+        //* Always needs to happen first!
+        super(fullName, birthYear) //* The super keyword is used to access properties on an object literal or class's [[Prototype]], or invoke a superclass's constructor.
         this.course = course
     }
 
@@ -401,3 +402,33 @@ class StudentCL extends PersonCL {
 const martha = new StudentCL('Martha Jones', 2012, 'Computer Science')
 martha.introduce()
 martha.clacAge()
+*/
+
+//* Inheritance Between "Classes": Object.create
+const PersonProto = {
+    calcAge() {
+        console.log(2037 - this.birthYear)
+    },
+
+    init(firstName, birthYear) {
+        this.firstName = firstName;
+        this.birthYear = birthYear
+    }
+}
+const steven = Object.create(PersonProto)
+
+
+const StudentProto = Object.create(PersonProto);
+StudentProto.init = function(firstName, birthYear, course) {
+    PersonProto.init.call(this, firstName, birthYear);
+    this.course = course;
+};
+
+
+StudentProto.introduce = function() {
+    console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+const jay = Object.create(StudentProto);
+jay.init('Jay', 2010, 'Computer Science');
+jay.introduce();
+jay.calcAge();
