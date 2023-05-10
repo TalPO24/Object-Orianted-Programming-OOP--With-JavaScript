@@ -442,8 +442,9 @@ class Account {
     locale = navigator.language;
 
     // 2) Private fields (instances)
-    #movements = [];
-    #pin;
+    #
+    movements = [];#
+    pin;
 
     constructor(owner, currency, pin) {
         this.owner = owner;
@@ -514,4 +515,9 @@ Account.helper();
 //* Encapsulatio: Protected Properties and Methods 
 
 //* Encapsulation is the packing of data and functions into one component (for example, a class) and then controlling access to that component to make a "blackbox" out of the object. Because of this, a user of that class only needs to know its interface (that is, the data and functions exposed outside the class), not the hidden implementation.
+
+
+//* Chaining Methods
+acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000)
+console.log(acc1.getMovements())
 */
