@@ -121,13 +121,13 @@ bmw.calcBrake()
 mercedes.calcSpeed()
 mercedes.calcSpeed()
 mercedes.calcBrake()
-
 */
 
+/*
 //* ES6 Classes
-
 // class expression
 // const PersonCL = class {}
+
 
 // class declaration
 class PersonCL {
@@ -180,6 +180,8 @@ jessica.greet()
 const walter = new PersonCL('Walter white', 1965)
 
 PersonCL.hey()
+*/
+
 
 /*
 //* Setters and Getters
@@ -203,7 +205,7 @@ account.latest = 50
 console.log(account.movements)
 */
 
-
+/*
 //* Object.create
 // The Object.create() static method creates a new object, using an existing object as the prototype of the newly created object.
 const personProto = {
@@ -229,7 +231,7 @@ console.log(steven.__proto__ === personProto)
 const sarah = Object.create(personProto)
 sarah.init('Sarah', 1979)
 sarah.calcAge()
-
+*/
 
 
 /*
@@ -267,6 +269,7 @@ ford.speedUS = 50;
 console.log(ford)
 */
 
+/*
 //* Inheritance Between "Classes": Constructor functions 
 const Person = function(firstName, birthYear) {
     this.firstName = firstName
@@ -303,3 +306,98 @@ console.log(mike instanceof Object);
 
 Student.prototype.constructor = Student;
 console.dir(Student.prototype.constructor);
+*/
+
+/*
+//* Challenge #2
+const Car = function(speed, make) {
+    this.speed = speed;
+    this.make = make;
+}
+
+Car.prototype.calcSpeed = function() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed} km/h`)
+}
+
+Car.prototype.calcBrake = function() {
+    this.speed -= 5
+    console.log(`${this.make} is going at ${this.speed} km/h`)
+}
+
+const EV = function(speed, make, charge) {
+    Car.call(this, make, speed)
+    this.charge = charge;
+}
+
+// Link the prototype
+EV.prototype = Object.create(Car.prototype)
+EV.prototype.chargeBattery = function(chargeTo) {
+    this.charge = chargeTo;
+}
+
+EV.prototype.calcSpeed = function() {
+    this.speed += 20;
+    this.charge--;
+    console.log(
+        `${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`
+    );
+}
+
+const tesla = new EV('Tesla', 120, 23)
+tesla.chargeBattery(90)
+console.log(tesla)
+tesla.calcBrake()
+tesla.calcSpeed()
+*/
+
+//* Inheritance Between "Classes": ES6 Classes
+
+class PersonCL {
+    constructor(fullName, birthYear) {
+        this.fullName = fullName;
+        this.birthYear = birthYear
+    }
+    clacAge() {
+        console.log(2037 - this.birthYear)
+    }
+    greet() {
+        console.log(`Hey ${this.fullName}`)
+    }
+    get age() {
+            return 2037 - this.birthYear
+        }
+        // Set a property that already exists 
+    set fullName(name) {
+        if (name.includes(" ")) this._fullName = name
+        else alert(`${name} is not a full name`)
+    }
+    get fullName() {
+            return this._fullName
+        }
+        // Static method
+    static hey() {
+        console.log('Hey there 🖐️')
+            // console.log(this)
+    }
+}
+
+class StudentCL extends PersonCL {
+    constructor(fullName, birthYear, course) {
+        // Always needs to happen first!
+        super(fullName, birthYear) // The super keyword is used to access properties on an object literal or class's [[Prototype]], or invoke a superclass's constructor.
+        this.course = course
+    }
+
+    introduce() {
+        console.log(`My name is ${this.fullName} and i study ${this.course}`)
+    }
+    clacAge() {
+        console.log(`I'm ${2037 - this.birthYear} years old, but as a student I feel more like ${2037 - this.birthYear + 10}`)
+    }
+
+}
+
+const martha = new StudentCL('Martha Jones', 2012, 'Computer Science')
+martha.introduce()
+martha.clacAge()
